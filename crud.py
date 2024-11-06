@@ -70,8 +70,7 @@ class Crud:
                 self.cursor2.execute(f'CALL update_{str(table_name_2).lower()}({"%s"*len(tabela)})', tabela)
         else:
             # Encontrando os dados atualizados no banco do segundo pelo ID
-            string = f'select_{str(table_name_2.lower())}'
-            self.cursor2.execute("SELECT * FROM"+string+"(%s)", id)
+            self.cursor2.execute("SELECT * FROM rpa_select_"+str(table_name_2.lower())+"(%s)", id)
             tabela = self.cursor2.fetchall()[0]
             
             self.cursor1.execute(f'CALL update_{str(table_name_1).lower()}({"%s"*len(tabela)})', tabela)
