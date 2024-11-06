@@ -1,4 +1,4 @@
-from rpa_class import RPA
+from rpa import RPA
 
 rpa = RPA()
 rpa.atualizar()
