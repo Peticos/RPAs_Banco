@@ -59,18 +59,21 @@ class RPA:
         ### Método para enviar as atualizações do banco do primeiro ano para o do segundo
         '''
         # Encontrando as atualizações que ocorreram nos últimos 5 minutos
-        self.cursor1.execute("SELECT * FROM log_total_1 WHERE alteration_date >= CURRENT_TIMESTAMP - INTERVAL '10000 minutes';")
+        self.cursor1.execute("SELECT * FROM log_total_1 WHERE alteration_date >= CURRENT_TIMESTAMP - INTERVAL '5 minutes' ORDER BY alteration_date;")
         modifications = self.cursor1.fetchall()
         self.cursor1.connection.commit()
         if modifications != []:
             # Para cada linha da tabela, é executada a mesma alteração em sua tabela equivalente no banco do segundo ano
             for modification in modifications:
-                alteration_date, id, table_name, operation, user = modification
+                print(modification)
+                table_name, alteration_date, operation, id, user = modification
+                print(operation)
                 if table_name in self.tables.keys():
                     # Encontrando o nome da tabela equivalente no banco do segundo ano
                     table_name_2 = self.tables[table_name]
                     # Chamando o método da classe CRUD que executa a operação da linha que está na tabela de log
-                    self.operations[str(operation).upper()](table_name, self.ids_1[table_name], table_name_2, self.ids_2[table_name_2], id, 1)
+                    params = [table_name, self.ids_1[table_name], table_name_2, self.ids_2[table_name_2], id, 1]
+                    self.operations[str(operation).upper()](*params)
                     self.cursor1.connection.commit()
                     self.cursor2.connection.commit()
                 
@@ -79,7 +82,7 @@ class RPA:
         ### Método para enviar as atualizações do banco do segundo ano para o do primeiro
         '''
         # Encontrando as atualizações que ocorreram nos últimos 5 minutos
-        self.cursor2.execute("SELECT * FROM log_total_2 WHERE alteration_date >= CURRENT_TIMESTAMP - INTERVAL '10000 minutes';")
+        self.cursor2.execute("SELECT * FROM log_total_2 WHERE alteration_date >= CURRENT_TIMESTAMP - INTERVAL '5 minutes' ORDER BY alteration_date;")
         modifications = self.cursor2.fetchall()
         self.cursor2.connection.commit()
         if modifications != []:

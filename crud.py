@@ -30,7 +30,7 @@ class Crud:
                 # Inserir na tabela correspondente no banco 2
                 if table_name_2 == 'admin':
                     print(f"Inserting data into {table_name_2} table")
-                    self.cursor2.execute("INSERT INTO admin (id, name, email, password) VALUES (%s, %s, %s, %s)", 
+                    self.cursor2.execute("INSERT INTO admin (id_admin, name, email, password) VALUES (%s, %s, %s, %s)", 
                                           (tabela[0], tabela[1], tabela[2], tabela[3]))
                 else:
                     placeholders = ', '.join(['%s'] * len(tabela))
