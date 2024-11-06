@@ -11,11 +11,11 @@ class RPA:
         password = os.getenv('PASSWORD12')
         
         # Dicionários de tabelas e suas colunas identificadoras
-        self.ids_1 = {'administradores': 'id', 'dica_do_dia': 'id_dica', 'endereco': 'id_endereco', 'local': 'id_local', 'telefone_local': 'id_telefone_local', 'raca': 'id_raca', 'especie': 'id_especie'}
-        self.ids_2 = {'admin': 'id_admin', 'day_hint': 'id_hint', 'address': 'id_address', 'locations': 'id_local', 'local_phone': 'id_local_phone', 'race': 'id_race', 'specie': 'id_specie'}
+        self.ids_1 = {'administradores': 'id', 'dica_do_dia': 'id_dica', 'endereco': 'id_endereco', 'local': 'id_local', 'raca': 'id_raca', 'cor_pelo': 'id_cor'}
+        self.ids_2 = {'admin': 'id_admin', 'day_hint': 'id_hint', 'address': 'id_address', 'locations': 'id_local', 'race': 'id_race', 'hair_color': 'id_color'}
         
         # Dicionário com as tabelas do primeiro ano e suas equivalentes no do segundo ano
-        self.tables = {'administradores': 'admin', 'dica_do_dia': 'day_hint', 'endereco': 'address', 'local': 'locations', 'telefone_local': 'local_phone', 'raca': 'race', 'especie': 'specie'}
+        self.tables = {'administradores': 'admin', 'dica_do_dia': 'day_hint', 'endereco': 'address', 'local': 'locations', 'raca': 'race', 'especie': 'specie'}
         
         self.tables_2 = {'user_': 'usuario', 'pet_register': 'pet', 'weight': 'peso', 'vakinha': 'vakinha', 'vaccine': 'vacina', 'phone_user': 'telefone', 'rescued_lost': 'resgatado_perdido', 'doses': 'doses'}
         
